@@ -61,7 +61,7 @@ async function main() {
   });
   // Force HTTPS in production behind a proxy
   app.use((req, res, next) => {
-    if (process.env.FORCE_HTTPS === '1' && !req.secure) return res.redirect(308, 'https://' + req.headers.host + req.originalUrl);
+    if (process.env.FORCE_HTTPS === '1' && !req.secure && req.path !== '/healthz') return res.redirect(308, 'https://' + req.headers.host + req.originalUrl);
     next();
   });
   // CSRF defence: mutating requests must be same-origin
