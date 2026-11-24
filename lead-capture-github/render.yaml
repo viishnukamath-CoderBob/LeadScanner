@@ -5,7 +5,7 @@ services:
     name: lead-capture
     runtime: node
     plan: free
-    buildCommand: npm ci --omit=dev
+    buildCommand: npm install --omit=dev --no-audit --no-fund
     startCommand: node server.js
     healthCheckPath: /healthz
     envVars:
